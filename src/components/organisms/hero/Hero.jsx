@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import { HeroContent, Wrraper } from "./Hero.styles";
 
@@ -8,14 +9,16 @@ const Hero = () => {
       <Navbar />
       <HeroContent>
         <h1>
-          Komorki Sądowy <br />
-          Kamil Łagocki
+          Komornik Sądowy <br />
+          Kamil Łagocki <hr />
         </h1>
-        <hr />
+
         <div>
-          <button>
-            Kontakt z <br /> kancelarią
-          </button>
+          <Link to="/kontakt">
+            <button>
+              Kontakt z <br /> kancelarią
+            </button>
+          </Link>
           <hr />
           <p>
             Jest funcjonariuszem publicznym działającym przy Sądzie Rejonowym w

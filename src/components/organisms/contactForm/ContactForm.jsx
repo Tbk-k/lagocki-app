@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { StyledSection } from "./ContactForm.style";
 import { ReactComponent as Mail } from "../../../assets/img/mail.svg";
 import Input from "../../atoms/input/Input";
 import SendIcon from "@mui/icons-material/Send";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const [inputs, setInputs] = useState({
@@ -12,6 +13,27 @@ const ContactForm = () => {
     phone: "",
     message: "",
   });
+
+  const formRef = useRef();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        formRef.current,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   const changeHandler = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -67,7 +89,7 @@ const ContactForm = () => {
       <div>
         <Mail />
         <h2>Formularz kontaktowy</h2>
-        <form action="">
+        <form onSubmit={submitHandler} ref={formRef}>
           {formFields.map(({ id, ...props }) => (
             <Input
               key={id}

@@ -18,6 +18,16 @@ export const Wrraper = styled.div`
     top: 0;
     min-height: 800px;
   }
+  &::before {
+    background: linear-gradient(1turn, #0c0c0c, #0d0d0d29);
+    width: 100%;
+    height: 100%;
+    min-height: 800px;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -99,5 +109,45 @@ export const HeroContent = styled.div`
   }
   @media only screen and (min-width: 1024px) {
     bottom: 100px;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    h1 {
+      flex: 4;
+      margin-bottom: 50px;
+      hr {
+        display: none;
+      }
+    }
+    div {
+      flex-direction: column-reverse;
+      flex: 2;
+      height: 80vh;
+      border-right: ${({ theme }) => `1px solid ${theme.colors.white}`};
+      gap: 0;
+      align-items: start;
+      p {
+        border-bottom: ${({ theme }) => `1px solid ${theme.colors.white}`};
+        margin: 20px 20px 60px;
+        padding-bottom: 40px;
+        font-size: 16px;
+        max-width: 400px;
+      }
+      button {
+        width: 150px;
+        height: 150px;
+        font-size: 16px;
+        margin-left: 30px;
+      }
+    }
+  }
+  @media only screen and (min-width: 1440px) {
+    h1 {
+      flex: 3;
+      font-size: 120px;
+      margin-bottom: 100px;
+    }
+    div {
+      flex: 1;
+    }
   }
 `;

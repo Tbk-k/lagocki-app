@@ -5,20 +5,68 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 140px;
-  padding: 0 20px;
-  position: relative;
-  z-index: 1;
-  img {
-    height: 80%;
-    cursor: pointer;
+  padding: 10px 20px;
+
+  a {
+    height: 120px;
+    z-index: 10;
+    img {
+      height: 100%;
+      cursor: pointer;
+    }
   }
-  button {
-    border: none;
-    font-family: ${({ theme }) => theme.fonts.h1};
-    color: ${({ theme }) => theme.colors.white};
-    cursor: pointer;
-    background-color: transparent;
-    font-size: 30px;
+
+  menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+    li {
+      display: none;
+      a {
+        font-size: 14px;
+        color: ${({ isDark }) =>
+          isDark ? "black" : ({ theme }) => theme.colors.white};
+      }
+    }
+    button {
+      border: none;
+      font-family: ${({ theme }) => theme.fonts.h1};
+      color: ${({ isDark }) =>
+        isDark ? "black" : ({ theme }) => theme.colors.white};
+      cursor: pointer;
+      background-color: transparent;
+      font-size: 30px;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    a {
+      height: 150px;
+    }
+    menu {
+      z-index: 10;
+      li {
+        display: block;
+        a {
+          font-size: 16px;
+        }
+      }
+      button {
+        margin-left: 10px;
+        font-size: 32px;
+      }
+    }
+  }
+  @media only screen and (min-width: 1440px) {
+    menu {
+      li {
+      }
+      button {
+        margin-left: 30px;
+      }
+    }
   }
 `;
