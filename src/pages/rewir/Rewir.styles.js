@@ -128,10 +128,33 @@ export const StyledAlert = styled.aside`
 
 export const StyledAns = styled.div`
   padding: 30px 10px;
-  display: none;
+  display: block;
   p {
     color: ${({ theme }) => theme.colors.white};
     line-height: 1.5;
     font-size: 18px;
+    margin: 0;
+    max-width: 450px;
+    &:first-of-type {
+      font-family: ${({ theme }) => theme.fonts.h1};
+      font-size: 30px;
+    }
+    &:last-of-type {
+      margin-top: 20px;
+    }
   }
+`;
+
+export const StyledError = styled.div`
+  background-color: #2c121082;
+  z-index: 10;
+  position: relative;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: #f4c7c7;
+  font-size: 14px;
+  margin: 0 auto 15px;
+  padding: 6px 15px;
+  border-radius: 5px;
+  max-width: 300px;
+  text-align: center;
 `;

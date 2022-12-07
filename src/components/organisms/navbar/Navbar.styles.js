@@ -28,15 +28,15 @@ export const StyledNav = styled.nav`
       display: none;
       a {
         font-size: 14px;
-        color: ${({ isDark }) =>
-          isDark ? "black" : ({ theme }) => theme.colors.white};
+        color: ${({ isdark }) =>
+          isdark ? "black" : ({ theme }) => theme.colors.white};
       }
     }
     button {
       border: none;
       font-family: ${({ theme }) => theme.fonts.h1};
-      color: ${({ isDark }) =>
-        isDark ? "black" : ({ theme }) => theme.colors.white};
+      color: ${({ isdark }) =>
+        isdark ? "black" : ({ theme }) => theme.colors.white};
       cursor: pointer;
       background-color: transparent;
       font-size: 30px;

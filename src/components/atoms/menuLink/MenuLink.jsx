@@ -11,8 +11,8 @@ const StyledLink = styled(Link)`
   div {
     width: 100%;
     height: 2px;
-    background-color: ${({ isDark }) =>
-      isDark ? "black" : ({ theme }) => theme.colors.white};
+    background-color: ${({ isdark }) =>
+      isdark ? "black" : ({ theme }) => theme.colors.white};
     transform: scale(0, 1);
     transition: transform 0.5s ease-in-out;
     transform-origin: 100% 0%;
@@ -32,10 +32,10 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const MenuLink = ({ path, label, isDark }) => {
+const MenuLink = ({ path, label, isdark }) => {
   return (
     <li style={{ width: "fit-content" }}>
-      <StyledLink to={path} isDark={isDark}>
+      <StyledLink to={path} isdark={isdark}>
         {label}
         <div />
       </StyledLink>

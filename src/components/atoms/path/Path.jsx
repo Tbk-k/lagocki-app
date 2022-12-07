@@ -4,8 +4,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 
 const StyledSpan = styled.span`
-  color: ${({ isDark }) =>
-    isDark ? "black" : ({ theme }) => theme.colors.white};
+  color: ${({ isdark }) =>
+    isdark ? "black" : ({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 14px;
   display: flex;
@@ -20,15 +20,15 @@ const StyledSpan = styled.span`
     cursor: pointer;
     svg {
       font-size: 15px;
-      fill: ${({ isDark }) =>
-        isDark ? "black" : ({ theme }) => theme.colors.white};
+      fill: ${({ isdark }) =>
+        isdark ? "black" : ({ theme }) => theme.colors.white};
     }
   }
 `;
 
-const Path = ({ path, isDark }) => {
+const Path = ({ path, isdark }) => {
   return (
-    <StyledSpan isDark={isDark}>
+    <StyledSpan isdark={isdark}>
       <Link to="..">
         <HomeIcon />
       </Link>

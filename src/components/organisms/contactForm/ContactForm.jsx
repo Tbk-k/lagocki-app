@@ -1,38 +1,41 @@
-import React, { useRef, useState } from "react";
-import { StyledSection } from "./ContactForm.style";
+import React, { useState } from "react";
+import { StyledAlert, StyledSection } from "./ContactForm.style";
 import { ReactComponent as Mail } from "../../../assets/img/mail.svg";
 import Input from "../../atoms/input/Input";
 import SendIcon from "@mui/icons-material/Send";
-import emailjs from "@emailjs/browser";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import axios from "axios";
 
 const ContactForm = () => {
-  const [inputs, setInputs] = useState({
+  const initialInputsState = {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     message: "",
+  };
+  const [inputs, setInputs] = useState(initialInputsState);
+
+  const [emailIsSend, setEmailStatus] = useState({
+    isSend: false,
+    sending: false,
   });
 
-  const formRef = useRef();
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
-        formRef.current,
-        process.env.REACT_APP_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
+    setEmailStatus((prev) => ({ ...prev, loading: true }));
+    try {
+      const res = await axios.post(
+        "http://localhost:3005/api/email/send",
+        inputs
       );
+      if (res.status === 200) {
+        setEmailStatus((prev) => ({ isSend: true, loading: false }));
+        setInputs(initialInputsState);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const changeHandler = (e) => {
@@ -46,6 +49,7 @@ const ContactForm = () => {
       name: "firstName",
       placeholder: "Imię*",
       required: true,
+      autoComplete: "off",
     },
     {
       id: 2,
@@ -53,6 +57,7 @@ const ContactForm = () => {
       name: "lastName",
       placeholder: "Nazwisko",
       required: false,
+      autoComplete: "off",
     },
     {
       id: 3,
@@ -60,6 +65,7 @@ const ContactForm = () => {
       name: "email",
       placeholder: "E-mail*",
       required: true,
+      autoComplete: "off",
     },
     {
       id: 4,
@@ -67,8 +73,10 @@ const ContactForm = () => {
       name: "phone",
       placeholder: "Nr telefonu",
       pattern: "[0-9]{3}-[0-9]{3}-[0-9]{3}",
-      maxLength: 11,
       required: false,
+      format: "###-###-###",
+      mask: "_",
+      autoComplete: "off",
     },
     {
       id: 5,
@@ -78,6 +86,7 @@ const ContactForm = () => {
       cols: "30",
       rows: "1",
       required: true,
+      autoComplete: "off",
     },
   ];
   return (
@@ -89,7 +98,7 @@ const ContactForm = () => {
       <div>
         <Mail />
         <h2>Formularz kontaktowy</h2>
-        <form onSubmit={submitHandler} ref={formRef}>
+        <form onSubmit={submitHandler}>
           {formFields.map(({ id, ...props }) => (
             <Input
               key={id}
@@ -98,10 +107,17 @@ const ContactForm = () => {
               props={props}
             />
           ))}
-
-          <button>
-            wyślij <SendIcon />
-          </button>
+          {emailIsSend.isSend ? (
+            <StyledAlert>
+              <InfoOutlinedIcon />
+              <p>Twoja wiadomość została wysłana pomyślnie.</p>
+            </StyledAlert>
+          ) : (
+            <button disabled={emailIsSend.isSend}>
+              {emailIsSend.loading ? "wysyłanie" : "wyślij"}
+              <SendIcon />
+            </button>
+          )}
         </form>
       </div>
     </StyledSection>

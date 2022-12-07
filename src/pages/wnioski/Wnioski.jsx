@@ -12,8 +12,8 @@ const Wnioski = () => {
 
   return (
     <StyledSection>
-      <Navbar isDark />
-      <Path path="wnioski" isDark />
+      <Navbar isdark />
+      <Path path="wnioski" isdark />
       <Files />
       <Footer />
     </StyledSection>

@@ -13,8 +13,8 @@ const Contact = () => {
 
   return (
     <StyledSection>
-      <Navbar isDark />
-      <Path path="Kontakt" isDark />
+      <Navbar isdark />
+      <Path path="Kontakt" isdark />
       <Wrapper>
         <StyledHeader>Kontakt z kancelarią</StyledHeader>
         <ContactInfo />

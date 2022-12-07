@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import HideMenu from "../hideMenu/HideMenu";
 import MenuLink from "../../atoms/menuLink/MenuLink";
 
-const Navbar = ({ isDark }) => {
+const Navbar = ({ isdark }) => {
   const [isMenu, setMenuSate] = useState(false);
 
   const clickHandler = () => {
@@ -15,24 +15,24 @@ const Navbar = ({ isDark }) => {
 
   return (
     <>
-      <StyledNav isDark={isDark}>
+      <StyledNav isdark={isdark}>
         <Link to="/">
-          <img src={isDark ? LogoDark : Logo} alt="" />
+          <img src={isdark ? LogoDark : Logo} alt="" />
         </Link>
         <menu>
-          <MenuLink isDark={isDark} path="/" label="Strona główna" />
+          <MenuLink isdark={isdark} path="/" label="Strona główna" />
           <MenuLink
-            isDark={isDark}
+            isdark={isdark}
             path="/kontakt"
             label="Kontakt z kancelarią"
           />
           <MenuLink
-            isDark={isDark}
+            isdark={isdark}
             path="/rewir-komorniczy"
             label="Rewir komorniczy"
           />
           <MenuLink
-            isDark={isDark}
+            isdark={isdark}
             path="/wnioski"
             label="Wnioski do pobrania"
           />

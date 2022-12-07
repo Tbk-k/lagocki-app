@@ -115,3 +115,22 @@ export const StyledSection = styled.section`
     }
   }
 `;
+
+export const StyledAlert = styled.div`
+  width: 100%;
+  max-width: 400px;
+  background-color: #2c2a28ba;
+  padding: 6px 15px;
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  svg {
+    height: 20px;
+    color: ${({ theme }) => theme.colors.white};
+    margin-top: 4px;
+  }
+  p {
+    width: 100%;
+  }
+`;
